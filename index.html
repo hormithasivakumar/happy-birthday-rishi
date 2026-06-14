@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy 22nd Birthday Rishi!</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0a1a3c, #142850, #1f3a68);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    padding: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 2.5rem;
+    color: #aeefff;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 0px #0d2347;
+  }
+
+  p.sub {
+    color: #9db4d8;
+    margin-bottom: 30px;
+    font-size: 1rem;
+  }
+
+  /* CAKE */
+  .cake-wrap {
+    position: relative;
+    margin-bottom: 30px;
+  }
+
+  .candles {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    margin-bottom: -5px;
+    flex-wrap: wrap;
+    max-width: 320px;
+  }
+
+  .candle {
+    width: 8px;
+    height: 35px;
+    background: linear-gradient(to bottom, #fff3b0, #ffb703);
+    border-radius: 3px;
+    position: relative;
+    margin: 0 1px;
+  }
+
+  .flame {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 18px;
+    background: radial-gradient(circle, #fff7b0 0%, #ffb703 50%, #ff5e00 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation: flicker 0.4s infinite alternate;
+    transform-origin: bottom center;
+  }
+
+  .flame.out {
+    display: none;
+  }
+
+  @keyframes flicker {
+    0% { transform: translateX(-50%) scale(1) rotate(-3deg); }
+    100% { transform: translateX(-50%) scale(1.15) rotate(3deg); }
+  }
+
+  .cake {
+    width: 320px;
+    background: #6b3a1f;
+    border-radius: 15px 15px 0 0;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+
+  .tier-top {
+    height: 70px;
+    background: linear-gradient(135deg, #7b4a26, #5c3219);
+    border-radius: 15px 15px 0 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tier-top::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 18px;
+    background: #cfe8ff;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    box-shadow: 0 4px 0 rgba(255,255,255,0.3);
+  }
+
+  .drip {
+    position: absolute;
+    bottom: 14px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .drip span {
+    width: 22px;
+    height: 22px;
+    background: #cfe8ff;
+    border-radius: 50%;
+    display: inline-block;
+    transform: translateY(8px);
+  }
+
+  .tier-bottom {
+    height: 90px;
+    background: linear-gradient(135deg, #6b3a1f, #4a240f);
+    border-radius: 0 0 12px 12px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .deco {
+    width: 18px;
+    height: 18px;
+    background: #4fc3f7;
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px #cfe8ff;
+  }
+  .deco:nth-child(2n) { background: #cfe8ff; box-shadow: 0 0 0 4px #4fc3f7; }
+
+  .plate {
+    width: 360px;
+    height: 18px;
+    background: #cfe8ff;
+    border-radius: 50%;
+    margin-top: -2px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  }
+
+  /* MESSAGE */
+  .message {
+    font-family: 'Pacifico', cursive;
+    font-size: 2rem;
+    color: #aeefff;
+    margin: 25px 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+  }
+  .message.show { opacity: 1; }
+
+  /* BUTTONS */
+  .btn {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 12px 28px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #2e6fb5, #4fc3f7);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(79, 195, 247, 0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin: 8px;
+  }
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 18px rgba(79, 195, 247, 0.5);
+  }
+  .btn:disabled {
+    background: #4a5a78;
+    box-shadow: none;
+    cursor: default;
+    transform: none;
+  }
+
+  .btn.gift {
+    background: linear-gradient(135deg, #1f3a68, #355c9e);
+    box-shadow: 0 6px 14px rgba(53, 92, 158, 0.4);
+  }
+  .btn.gift:hover {
+    box-shadow: 0 10px 18px rgba(53, 92, 158, 0.5);
+  }
+
+  /* GIFT POPUP */
+  .overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    z-index: 100;
+  }
+  .overlay.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .gift-popup {
+    background: #142850;
+    border-radius: 20px;
+    padding: 40px 30px;
+    text-align: center;
+    max-width: 320px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    transform: scale(0.7);
+    transition: transform 0.3s ease;
+  }
+  .overlay.show .gift-popup {
+    transform: scale(1);
+  }
+
+  .gift-icon {
+    font-size: 4rem;
+    animation: bounce 1s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .gift-popup h2 {
+    font-family: 'Pacifico', cursive;
+    color: #aeefff;
+    margin: 15px 0 10px;
+    font-size: 1.6rem;
+  }
+
+  .gift-popup p {
+    color: #cfe8ff;
+    margin-bottom: 20px;
+  }
+
+  .video-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .video-circle {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #4fc3f7;
+    box-shadow: 0 4px 12px rgba(79, 195, 247, 0.5);
+  }
+
+  .video-circle video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* CONFETTI */
+  .confetti {
+    position: fixed;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    opacity: 0.9;
+    pointer-events: none;
+    z-index: 50;
+    animation: fall linear forwards;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(110vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <h1>🎂 Happy 22nd Birthday Rishi! 🎂</h1>
+  <p class="sub">Click the candles to blow them out!</p>
+
+  <div class="cake-wrap">
+    <div class="candles" id="candles"></div>
+    <div class="cake">
+      <div class="tier-top">
+        <div class="drip">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+      <div class="tier-bottom">
+        <div class="deco"></div>
+        <div class="deco"></div>
+        <div class="deco"></div>
+        <div class="deco"></div>
+      </div>
+    </div>
+    <div class="plate"></div>
+  </div>
+
+  <div class="message" id="message">Happy 22nd Birthday Rishi</div>
+
+  <div>
+    <button class="btn" id="blowBtn" onclick="blowCandles()">🌬️ Blow Out Candles</button>
+    <button class="btn gift" id="giftBtn" onclick="openGift()">🎁 Open Your Gift</button>
+  </div>
+
+  <div class="overlay" id="overlay">
+    <div class="gift-popup">
+      <div class="gift-icon">🎁</div>
+      <h2>Surprise!</h2>
+      <p>Gift on your way....</p>
+      <div class="video-grid">
+        <div class="video-circle">
+          <video src="videos/video1.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <div class="video-circle">
+          <video src="videos/video2.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <div class="video-circle">
+          <video src="videos/video3.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <div class="video-circle">
+          <video src="videos/video4.mp4" autoplay loop muted playsinline></video>
+        </div>
+      </div>
+      <button class="btn" onclick="closeGift()">Close</button>
+    </div>
+  </div>
+
+<script>
+  // Create 22 candles
+  const candlesContainer = document.getElementById('candles');
+  for (let i = 0; i < 22; i++) {
+    const candle = document.createElement('div');
+    candle.className = 'candle';
+    const flame = document.createElement('div');
+    flame.className = 'flame';
+    candle.appendChild(flame);
+    candlesContainer.appendChild(candle);
+  }
+
+  function blowCandles() {
+    document.querySelectorAll('.flame').forEach(f => f.classList.add('out'));
+    document.getElementById('message').classList.add('show');
+    document.getElementById('blowBtn').disabled = true;
+    document.getElementById('blowBtn').innerText = "🎉 Yay!";
+    launchConfetti();
+  }
+
+  function openGift() {
+    document.getElementById('overlay').classList.add('show');
+  }
+
+  function closeGift() {
+    document.getElementById('overlay').classList.remove('show');
+  }
+
+  function launchConfetti() {
+    const colors = ['#4fc3f7', '#aeefff', '#cfe8ff', '#90e0ef', '#ffe066'];
+    for (let i = 0; i < 80; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti';
+      piece.style.left = Math.random() * 100 + 'vw';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.width = piece.style.height = (Math.random() * 8 + 5) + 'px';
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      piece.style.animationDuration = (Math.random() * 2 + 2) + 's';
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), 4000);
+    }
+  }
+</script>
+
+</body>
+</html>
