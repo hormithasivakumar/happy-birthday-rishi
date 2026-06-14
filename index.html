@@ -275,7 +275,28 @@
     object-fit: cover;
   }
 
-  /* CONFETTI */
+  .music-toggle {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2e6fb5, #4fc3f7);
+    border: none;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(79, 195, 247, 0.5);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+  }
+  .music-toggle:hover {
+    transform: scale(1.1);
+  }
   .confetti {
     position: fixed;
     top: -10px;
@@ -296,6 +317,9 @@
 </style>
 </head>
 <body>
+
+  <button class="music-toggle" id="musicBtn" onclick="toggleMusic()">🔇</button>
+  <audio id="bgMusic" src="audio/song.mp3" loop></audio>
 
   <h1>🎂 Happy 22nd Birthday Rishi! 🎂</h1>
   <p class="sub">Click the candles to blow them out!</p>
@@ -349,6 +373,33 @@
   </div>
 
 <script>
+  // Music control
+  const bgMusic = document.getElementById('bgMusic');
+  const musicBtn = document.getElementById('musicBtn');
+  let musicPlaying = false;
+
+  function toggleMusic() {
+    if (musicPlaying) {
+      bgMusic.pause();
+      musicBtn.textContent = '🔇';
+    } else {
+      bgMusic.play();
+      musicBtn.textContent = '🔊';
+    }
+    musicPlaying = !musicPlaying;
+  }
+
+  // Try autoplay on first user interaction anywhere on page
+  document.addEventListener('click', function tryAutoplay() {
+    if (!musicPlaying) {
+      bgMusic.play().then(() => {
+        musicPlaying = true;
+        musicBtn.textContent = '🔊';
+      }).catch(() => {});
+    }
+    document.removeEventListener('click', tryAutoplay);
+  }, { once: true });
+
   // Create 22 candles
   const candlesContainer = document.getElementById('candles');
   for (let i = 0; i < 22; i++) {
